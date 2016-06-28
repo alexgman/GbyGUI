@@ -5,10 +5,11 @@
     <script src="app.js"></script>
     <script src="controllers/GbyG.js"></script>
 </head>
-<body>
-<h1>Samples, status, and user</h1>
-<div ng-controller="GetAllSamplesByStatusUser">
-    <div ng-repeat="data in dataset">{{ data.Sample.sampleid }}</div>
-</div>
+<body ng-controller="GetAllSamplesByStatusUser">
+<table>
+    <tr ng-repeat="data in dataset">
+        <td>{{ data.FirstName }}</td>
+    </tr>
+</table>
 </body>
 </html>
