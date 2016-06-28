@@ -1,0 +1,14 @@
+﻿<!doctype html>
+<html ng-app="myApp">
+<head>
+    <script src="Scripts/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/GbyG.js"></script>
+</head>
+<body>
+<h1>Samples, status, and user</h1>
+<div ng-controller="GetAllSamplesByStatusUser">
+    <div ng-repeat="data in dataset">{{ data.Sample.sampleid }}</div>
+</div>
+</body>
+</html>
