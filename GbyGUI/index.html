@@ -1,15 +1,35 @@
 ﻿<!doctype html>
 <html ng-app="myApp">
 <head>
+    <link data-require="bootstrap-css@3.2.0" data-semver="3.2.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <script src="Scripts/angular.js"></script>
     <script src="app.js"></script>
     <script src="controllers/GbyG.js"></script>
 </head>
-<body ng-controller="GetAllSamplesByStatusUser">
-<table>
-    <tr ng-repeat="data in dataset">
-        <td>{{ data.FirstName }}</td>
+<body>
+
+<table st-table="rowCollection" class="table table-striped" ng-controller="GetAllSamplesByStatusUser">
+    <thead>
+    <tr>
+    <th>Sample.SampleId</th>
+    <th>Sample.Barcode</th>
+    <th>Sample.CreatedAt</th>
+    <th>Sample.CreatedBy</th>
+    <th>Sample.StatusId</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in dataset">
+        <td>{{row.Sample.SampleId}}</td>
+        <td>{{row.Sample.Barcode}}</td>
+        <td>{{row.Sample.CreatedAt}}</td>
+        <td>{{row.Sample.CreatedBy}}</td>
+        <td>{{row.Sample.StatusId}}</td>
     </tr>
+    </tbody>
 </table>
+
+
+
 </body>
+
 </html>
