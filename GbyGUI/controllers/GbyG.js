@@ -14,8 +14,7 @@ app.controller('GetSamples',
 
         $scope.getSamplesByStatus = function() {
             $scope.tab = 2;
-
-            var myParams = { statustype: 'Received' };
+            var myParams = { statustype: $scope.statusText };
             $http({
                 url: 'http://localhost:36059/api/Samples/GetSamplesByStatus',
                 method: 'GET',
@@ -23,7 +22,6 @@ app.controller('GetSamples',
                 paramSerializer: '$httpParamSerializerJQLike'
             }).then(function (response) {
                 $scope.dataset = response.data;
-                //console.log(response.data);
             }, function (error) {
                 console.log(error);
             });
@@ -31,9 +29,9 @@ app.controller('GetSamples',
 
 
         $scope.getSamplesByUserMatch = function () {
-            $scope.tab = 2;
+            $scope.tab = 3;
 
-            var myParams = { CreatedBy: 3 };
+            var myParams = { CreatedBy: $scope.userText };
             $http({
                 url: 'http://localhost:36059/api/Samples/GetSamplesByUserMatch',
                 method: 'GET',
@@ -46,30 +44,11 @@ app.controller('GetSamples',
             });
         }
 
+        $scope.greeting = function ()
+        {
+            return { text: 'Hello' }
+        };
+
+
         $scope.getAllSamplesByStatusUser();
     });
-
-//app.controller('GetAllSamplesByStatusUser',
-//    function ($scope, $http) {
-//        $http.get('http://localhost:36059/api/Samples/GetAllSamplesByStatusUser')
-//            .then(function (data) {
-//                $scope.dataset = data.data;
-//            });
-//    });
-
-
-//app.controller('GetSamplesByStatus',
-//    function ($scope, $http, $httpParamSerializerJQLike) {
-//        var myParams = { statustype: "Received" };
-//        $http({
-//            url: "http://localhost:36059/api/Samples/GetSamplesByStatus",
-//            method: 'GET',
-//            params: myParams,
-//            paramSerializer: '$httpParamSerializerJQLike'
-//        }).then(function (response) {
-//            $scope.dataset2 = response.data;
-//            //console.log(response.data);
-//        }, function (error) {
-//            console.log(error);
-//        });
-//    });
