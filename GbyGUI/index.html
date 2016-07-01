@@ -9,9 +9,10 @@
 <body ng-controller="GetSamples">
     <section>
         <ul class="nav nav-pills" ng-init="tab=1">
-            <li> <a ng-href="#" ng-click="getAllSamplesByStatusUser()">Samples, with status and user</a></li>
-            <li> <a ng-href="#" ng-click="getSamplesByStatus()">Samples by status</a></li>
-            <li> <a ng-href="#" ng-click="getSamplesByUserMatch()">Samples by User</a></li>
+            <li ng-class="{active:tab===1}"> <a ng-href="#" ng-click="getAllSamplesByStatusUser()">Samples, with status and user</a></li>
+            <li ng-class="{active:tab===2}"> <a ng-href="#" ng-click="getSamplesByStatus()">Samples by status</a></li>
+            <li ng-class="{active:tab===3}"> <a ng-href="#" ng-click="getSamplesByUserMatch()">Samples by User</a></li>
+            <li ng-class="{active:tab===4}"> <a ng-href="#" ng-click="createSample()">New Sample</a></li>
         </ul>
     </section>
 
@@ -41,15 +42,15 @@
 
     <div class="panel" ng-show="tab===2">
         <div>
+            <div>
+                <form ng-submit="getSamplesByStatus()">
+                    <label for="statusText">{{ statusText.label }}</label>
+                    <input type="text" ng-model="statusText.value" />
+                    <input type="submit">
+                </form>
+            </div>
             <table st-table="rowCollection" class="table table-striped">
-                <tr>
-                    <td>
-                        <form ng-submit="getSamplesByStatus()">
-                            <input type="text" ng-model="statusText">
-                            <input type="submit">
-                        </form>
-                    </td>
-                </tr>
+
                 <thead>
                     <tr>
                         <th>SampleId</th>
@@ -72,37 +73,64 @@
         </div>
     </div>
 
-    <div class="panel" ng-show="tab===3">
+<div class="panel" ng-show="tab===3">
+    <div>
         <div>
-            <table st-table="rowCollection" class="table table-striped">
-                <tr>
-                    <td>
-                        <form ng-submit="getSamplesByUserMatch()">
-                            <input type="text" ng-model="userText">
-                            <input type="submit">
-                        </form>
-                    </td>
-                </tr>
-                <thead>
-                <tr>
-                    <th>SampleId</th>
-                    <th>Barcode</th>
-                    <th>CreatedAt</th>
-                    <th>CreatedBy</th>
-                    <th>StatusId</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="row in dataset">
-                    <td>{{row.SampleId}}</td>
-                    <td>{{row.Barcode}}</td>
-                    <td>{{row.CreatedAt | date:'MM/dd/yyyy'}}</td>
-                    <td>{{row.CreatedBy}}</td>
-                    <td>{{row.StatusId}}</td>
-                </tr>
-                </tbody>
-            </table>
+            <form ng-submit="getSamplesByUserMatch()">
+                <label for="userText">{{ userText.label }}</label>
+                <input type="text" ng-model="userText.value"/>
+                <input type="submit">
+            </form>
+        </div>
+        <table st-table="rowCollection" class="table table-striped">
+
+            <thead>
+            <tr>
+                <th>SampleId</th>
+                <th>Barcode</th>
+                <th>CreatedAt</th>
+                <th>CreatedBy</th>
+                <th>StatusId</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in dataset">
+                <td>{{row.SampleId}}</td>
+                <td>{{row.Barcode}}</td>
+                <td>{{row.CreatedAt | date:'MM/dd/yyyy'}}</td>
+                <td>{{row.CreatedBy}}</td>
+                <td>{{row.StatusId}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+    <div class="panel" ng-show="tab===4">
+        <div>
+            <form ng-submit="createSample()">
+                <label for="newRecord.SampleId">{{ newRecord.SampleId.label }}</label>
+                <input type="text" ng-model="newRecord.SampleId.value"/>
+<!--
+                <label for="userText">{{ userText.label }}</label>
+                <input type="text" ng-model="userText.value"/>
+
+                <label for="userText">{{ userText.label }}</label>
+                <input type="text" ng-model="userText.value"/>
+
+                <label for="userText">{{ userText.label }}</label>
+                <input type="text" ng-model="userText.value"/>
+
+                <label for="userText">{{ userText.label }}</label>
+                <input type="text" ng-model="userText.value" />
+                <input type="submit">-->
+            </form>
         </div>
     </div>
+
+
+
 </body>
 </html>
